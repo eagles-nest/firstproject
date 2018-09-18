@@ -35,9 +35,10 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 //        String regURL = "https://skytoptrial.000webhostapp.com/reg.php";
 //        String loginURL = "https://skytoptrial.000webhostapp.com/login.php";
 //        String recoverPassURL= "https://skytoptrial.000webhostapp.com/mail_pass.php";
-        String regURL = "http://75ce8774.ngrok.io/skytop/reg.php";
-        String loginURL= "http://75ce8774.ngrok.io/skytop/login.php";
-        String recoverPassURL= "http://75ce8774.ngrok.io/skytop/mail_pass.php";
+        String regURL = "http://3de5b60f.ngrok.io/skytop/reg.php";
+        String loginURL= "http://3de5b60f.ngrok.io/skytop/login.php";
+        String recoverPassURL= "http://3de5b60f.ngrok.io/skytop/mail_pass.php";
+        String skytoprecover = "https://www.demoscad.net/appteam/cp/mobile.forgot.pw.php";
         if (method.equals("register")) {
             try {
                 URL url = new URL(regURL);
@@ -105,14 +106,17 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             }
         }else if(method.equals("recover")){
             //method to recover user password using email
+            //Toast.makeText(context, "gekki", Toast.LENGTH_SHORT).show();
             try {
-                URL url = new URL(recoverPassURL);
+                String username = strings[1];
+//                URL url = new URL(recoverPassURL);
+                URL url = new URL(skytoprecover);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream os = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                String data =URLEncoder.encode("email", "UTF-8")+"="+ URLEncoder.encode(email, "UTF-8");
+                String data =URLEncoder.encode("username", "UTF-8")+"="+ URLEncoder.encode(username, "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();//flush the bufferedwriter
                 bufferedWriter.close();
